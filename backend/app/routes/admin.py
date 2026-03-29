@@ -19,7 +19,8 @@ def login():
     if not admin or not admin.check_password(data['password']):
         return jsonify({'message': 'Invalid credentials'}), 401
     
-    access_token = create_access_token(identity=admin.admin_id)
+    # PyJWT requires the subject (sub) claim to be a string; store admin_id as string
+    access_token = create_access_token(identity=str(admin.admin_id))
     return jsonify({
         'message': 'Login successful',
         'access_token': access_token,
@@ -56,7 +57,7 @@ def register():
 def get_profile():
     """Get admin profile"""
     admin_id = get_jwt_identity()
-    admin = db.session.get(Admin, admin_id)
+    admin = db.session.get(Admin, int(admin_id))
     
     if not admin:
         return jsonify({'message': 'Admin not found'}), 404
@@ -68,7 +69,7 @@ def get_profile():
 def update_profile():
     """Update admin profile"""
     admin_id = get_jwt_identity()
-    admin = db.session.get(Admin, admin_id)
+    admin = db.session.get(Admin, int(admin_id))
     
     if not admin:
         return jsonify({'message': 'Admin not found'}), 404

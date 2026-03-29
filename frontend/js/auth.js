@@ -57,21 +57,53 @@ async function studentLogin(event) {
     
     try {
         // Access student data
-        const data = await fetchAPI(`/students/email/${email}`);
-        
-        if (data.student_id === parseInt(studentId)) {
-            localStorage.setItem('userId', data.student_id);
-            localStorage.setItem('userType', 'student');
-            localStorage.setItem('studentEmail', data.email);
-            
-            showNotification('Login successful', 'success');
-            window.location.href = 'dashboard.html';
-        } else {
+        let student = await fetchAPI(`/students/email/${email}`);
+
+        if (student.student_id !== parseInt(studentId)) {
             showNotification('Invalid student ID', 'error');
+            return;
         }
+
+        localStorage.setItem('userId', student.student_id);
+        localStorage.setItem('userType', 'student');
+        localStorage.setItem('studentEmail', student.email);
+        
+        showNotification('Login successful', 'success');
+        window.location.href = 'dashboard.html';
     } catch (error) {
-        showNotification(error.message || 'Login failed', 'error');
+        // If not found, auto-create student
+        if (error.message && error.message.toLowerCase().includes('not found')) {
+            try {
+                const derivedName = deriveNameFromEmail(email);
+                const created = await fetchAPI('/students/register', 'POST', {
+                    name: derivedName,
+                    email,
+                    enrollment_number: studentId,
+                    status: 'active'
+                });
+
+                const student = created.student;
+                localStorage.setItem('userId', student.student_id);
+                localStorage.setItem('userType', 'student');
+                localStorage.setItem('studentEmail', student.email);
+                showNotification('Profile created and logged in', 'success');
+                window.location.href = 'dashboard.html';
+            } catch (createErr) {
+                showNotification(createErr.message || 'Login failed', 'error');
+            }
+        } else {
+            showNotification(error.message || 'Login failed', 'error');
+        }
     }
+}
+
+function deriveNameFromEmail(email) {
+    const prefix = email.split('@')[0] || 'student';
+    return prefix
+        .split(/[._]/)
+        .filter(Boolean)
+        .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(' ') || 'Student';
 }
 
 async function registerStudent(event) {

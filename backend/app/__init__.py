@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
@@ -16,6 +16,21 @@ def create_app(config_name='development'):
     
     db.init_app(app)
     jwt.init_app(app)
+    
+    # Root route
+    @app.route('/')
+    def home():
+        return jsonify({
+            'message': 'Library Management System API',
+            'status': 'running',
+            'endpoints': {
+                'admin': '/api/admin/login',
+                'books': '/api/books',
+                'students': '/api/students',
+                'transactions': '/api/transactions',
+                'chatbot': '/api/chatbot'
+            }
+        })
     
     # Register blueprints
     from app.routes.admin import admin_bp

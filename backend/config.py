@@ -13,8 +13,8 @@ class Config:
 class DevelopmentConfig(Config):
     """Development configuration"""
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{os.getenv('DB_USER', 'root')}:{os.getenv('DB_PASSWORD', '')}@{os.getenv('DB_HOST', 'localhost')}/{os.getenv('DB_NAME', 'library_management')}"
-
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///library_management.db'
+    
 class ProductionConfig(Config):
     """Production configuration"""
     DEBUG = False

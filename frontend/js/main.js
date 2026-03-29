@@ -49,8 +49,20 @@ async function fetchAPI(endpoint, method = 'GET', data = null) {
         const response = await fetch(`${API_URL}${endpoint}`, config);
         
         if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.message || `API Error: ${response.status}`);
+            let message = `API Error: ${response.status}`;
+            try {
+                const errorBody = await response.json();
+                message = errorBody.message || errorBody.msg || message;
+            } catch (_) {
+                // If JSON parse fails, try plain text
+                try {
+                    const textBody = await response.text();
+                    if (textBody) message = textBody;
+                } catch (_) {
+                    /* ignore */
+                }
+            }
+            throw new Error(message);
         }
         
         return await response.json();
