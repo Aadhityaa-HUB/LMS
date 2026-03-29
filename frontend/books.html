@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Books - Library Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">📚 Library System</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="books.html" class="nav-link active">Books</a></li>
+                <li><a href="login.html" class="nav-link">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="books-section">
+            <h1>Browse Books</h1>
+            
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search books by title or author...">
+                <button onclick="searchBooks()">Search</button>
+            </div>
+
+            <div class="filter-options">
+                <button class="filter-btn" onclick="filterByAvailability()">Available Books</button>
+                <button class="filter-btn" onclick="filterByMostRead()">Most Read</button>
+                <button class="filter-btn" onclick="loadAllBooks()">All Books</button>
+            </div>
+
+            <div id="booksContainer" class="books-grid"></div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Library Management System. All rights reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/books.js"></script>
+</body>
+</html>
