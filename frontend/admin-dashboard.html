@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Library Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">📚 Library System - Admin</div>
+            <ul class="nav-menu">
+                <li><a href="#" id="logoutBtn" class="nav-link">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#" onclick="showTab('dashboard')">Dashboard</a></li>
+                <li><a href="#" onclick="showTab('books')">Manage Books</a></li>
+                <li><a href="#" onclick="showTab('students')">Manage Students</a></li>
+                <li><a href="#" onclick="showTab('transactions')">Transactions</a></li>
+                <li><a href="#" onclick="showTab('overdue')">Overdue Books</a></li>
+                <li><a href="#" onclick="showTab('fines')">Fines Management</a></li>
+            </ul>
+        </aside>
+
+        <main class="admin-content">
+            <!-- Dashboard Tab -->
+            <div id="dashboardTab" class="tab-content active">
+                <h1>Admin Dashboard</h1>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Books</h3>
+                        <p id="totalBooks">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Students</h3>
+                        <p id="totalStudents">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Issuances</h3>
+                        <p id="activeIssuances">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Pending Fines</h3>
+                        <p id="pendingFines">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Books Tab -->
+            <div id="booksTab" class="tab-content">
+                <h1>Manage Books</h1>
+                <button class="btn btn-primary" onclick="showAddBookForm()">Add New Book</button>
+                <div id="booksContainer" class="books-table"></div>
+            </div>
+
+            <!-- Students Tab -->
+            <div id="studentsTab" class="tab-content">
+                <h1>Manage Students</h1>
+                <div id="studentsContainer" class="students-table"></div>
+            </div>
+
+            <!-- Transactions Tab -->
+            <div id="transactionsTab" class="tab-content">
+                <h1>Transactions</h1>
+                <div id="transactionsContainer" class="transactions-table"></div>
+            </div>
+
+            <!-- Overdue Books Tab -->
+            <div id="overdueTab" class="tab-content">
+                <h1>Overdue Books</h1>
+                <div id="overdueContainer" class="overdue-table"></div>
+            </div>
+
+            <!-- Fines Tab -->
+            <div id="finesTab" class="tab-content">
+                <h1>Fines Management</h1>
+                <div id="finesContainer" class="fines-table"></div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Library Management System. All rights reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

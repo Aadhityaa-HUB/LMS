@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Library Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">📚 Library System</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="books.html" class="nav-link">Books</a></li>
+                <li><a href="#" id="logoutBtn" class="nav-link">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="dashboard-section">
+            <h1>Student Dashboard</h1>
+            
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h2>Issued Books</h2>
+                    <div id="issuedBooks" class="dashboard-content"></div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h2>My Fines</h2>
+                    <div id="studentFines" class="dashboard-content"></div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h2>Transaction History</h2>
+                    <div id="transactionHistory" class="dashboard-content"></div>
+                </div>
+            </div>
+
+            <div class="chatbot-section">
+                <h2>Chat with Library Assistant</h2>
+                <div class="chatbot-container">
+                    <div id="chatBox" class="chat-box"></div>
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="Ask me anything...">
+                        <button onclick="sendChatMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Library Management System. All rights reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

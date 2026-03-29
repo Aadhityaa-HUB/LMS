@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Library Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">📚 Library System</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="books.html" class="nav-link">Books</a></li>
+                <li><a href="login.html" class="nav-link active">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="login-section">
+            <div class="login-container">
+                <h1>Login</h1>
+                
+                <div class="login-tabs">
+                    <button class="tab-btn active" onclick="showTab('admin')">Admin Login</button>
+                    <button class="tab-btn" onclick="showTab('student')">Student Login</button>
+                </div>
+
+                <!-- Admin Login -->
+                <div id="adminTab" class="tab-content active">
+                    <form onsubmit="adminLogin(event)">
+                        <div class="form-group">
+                            <label for="adminUsername">Username:</label>
+                            <input type="text" id="adminUsername" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="adminPassword">Password:</label>
+                            <input type="password" id="adminPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                </div>
+
+                <!-- Student Login -->
+                <div id="studentTab" class="tab-content">
+                    <form onsubmit="studentLogin(event)">
+                        <div class="form-group">
+                            <label for="studentEmail">Email:</label>
+                            <input type="email" id="studentEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="studentId">Student ID:</label>
+                            <input type="text" id="studentId" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                    
+                    <hr>
+                    <p>Don't have an account? <a href="register.html">Register here</a></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Library Management System. All rights reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
